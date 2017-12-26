@@ -24,6 +24,17 @@ RSpec.describe AddressBook do
     end
   end
 
+  describe "#destroy" do
+    it "clears all the entries" do
+      book.import_from_csv("entries.csv")
+      book_size = book.entries.size
+      expect(book_size).to eq 5
+      book.destroy
+      book_size = book.entries.size
+      expect(book_size).to eq 0  
+    end
+  end
+
   describe "#add_entry" do
     it "adds only one entry to the address book" do
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
